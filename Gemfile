@@ -11,6 +11,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker'
 gem 'responders'
 gem "active_model_serializers", github: "rails-api/active_model_serializers"
+gem "bootstrap-sass", "~> 3.3.5"
 
 group :development, :test do
   gem "rspec-rails"
