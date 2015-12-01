@@ -16,5 +16,6 @@ function renderIdea(idea) {
      +'"><h3>'
      + idea.title + '</h3>'
      + '<p>' + idea.body + '</p></div>'
+     + '</p><button id="delete-post" class="btn btn-default btn-xs">Delete</button></div>'
   );
 };
