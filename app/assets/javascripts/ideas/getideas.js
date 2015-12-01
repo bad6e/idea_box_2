@@ -12,7 +12,9 @@ function parseIdeas(response) {
 
 function renderIdea(idea) {
   $('#latest-posts').prepend(
-     "<h3>" + idea.title + "</h3>"
-     + "<p>" + idea.body + "</p>"
+     '<div class="idea-id-' + idea.id
+     +'"><h3>'
+     + idea.title + '</h3>'
+     + '<p>' + idea.body + '</p></div>'
   );
 };
