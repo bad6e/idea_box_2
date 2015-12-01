@@ -7,7 +7,6 @@ $(document).ready(function(){
       $.each(response, function(i, idea) {
         renderIdea(idea)
       })
-
     }
   })
 });
