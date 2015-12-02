@@ -1,6 +1,7 @@
 class Api::V1::IdeasController < ApplicationController
   respond_to :json
 
+  skip_before_filter  :verify_authenticity_token
   def index
     respond_with Idea.all, location: nil
   end
