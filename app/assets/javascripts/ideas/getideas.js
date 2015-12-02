@@ -14,7 +14,7 @@ function renderIdea(idea) {
   $('#latest-posts').prepend(
      '<div class="idea-id-' + idea.id
      +'"><h3>'
-     + idea.title + '</h3>'
+     + idea.title + ' ( ' + idea.quality + ' )</h3>'
      + '<p>' + idea.body + '</p>'
      + "</p><button class='btn btn-default btn-xs delete-idea' id='" + idea.id + "'>Delete</button></div>"
   );
