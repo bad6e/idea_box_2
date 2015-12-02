@@ -28,16 +28,13 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
     end
   end
 
-  describe "GET /api/v1/ideas/:id" do
+  describe "DELETE /api/v1/ideas/:id" do
 
     it "gets an individual idea on the idea list" do
+      delete :destroy, id: @idea_one.id ,format: :json
+      assert_response :success
       get :index ,format: :json
-      expect(response_data.first['title']).to eq(@idea_one.title)
-    end
-
-    it "gets all the ideas on the ideas list" do
-      get :index ,format: :json
-      expect(response_data.count).to eq(4)
+      expect(response_data.count).to eq(3)
     end
   end
 end
