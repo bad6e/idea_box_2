@@ -21,11 +21,6 @@ function editIdea() {
           success: function(response){
             idea.parent().children('h3').text(response.title)
             idea.parent().children('p').text(response.body)
-            debugger
-
-
-            //Display new idea
-            //Find idea that we are updating and replace information
           },
           error: function(){
             debugger
