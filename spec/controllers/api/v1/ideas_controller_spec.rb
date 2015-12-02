@@ -30,11 +30,21 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
   describe "DELETE /api/v1/ideas/:id" do
 
-    it "gets an individual idea on the idea list" do
+    it "deletes an idea on the idea list" do
       delete :destroy, id: @idea_one.id ,format: :json
       assert_response :success
       get :index ,format: :json
       expect(response_data.count).to eq(3)
+    end
+  end
+
+  describe "POST /api/v1/ideas/" do
+
+    it "creates an idea on the idea list" do
+      post :create, idea: { title: "E", body: "E1" }, format: :json
+      assert_response :success
+      get :index ,format: :json
+      expect(response_data.count).to eq(5)
     end
   end
 end
