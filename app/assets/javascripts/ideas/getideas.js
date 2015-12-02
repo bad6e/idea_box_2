@@ -13,7 +13,7 @@ function parseIdeas(response) {
 function renderIdea(idea) {
   $('#latest-posts').prepend(
      '<div class="idea-id-' + idea.id
-     +'"><h3>'
+     +' all-ideas"><h3>'
      + idea.title
      + '</h3><h4>( '
      + idea.quality
