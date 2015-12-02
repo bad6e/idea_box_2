@@ -12,13 +12,13 @@ function createIdea() {
     $('#idea-title').val('')
     $('#idea-body').val('')
 
-    $.ajax({
-      type: 'POST',
-      url: 'http://localhost:3000/api/v1/ideas.json',
-      data: ideaParams,
-      success: function(idea) {
-        getIdeas();
-      }
-    })
+    postIdea(ideaParams)
   })
+}
+
+function postIdea(ideaParams) {
+  $.post('http://localhost:3000/api/v1/ideas.json', ideaParams,
+    function(returnedData){
+    renderIdea(returnedData)
+  });
 }
