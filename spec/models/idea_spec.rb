@@ -6,10 +6,6 @@ RSpec.describe Idea, type: :model do
     Idea.create(title: "Zipskee", body: "Travel App")
   }
 
-  let(:idea_two) {
-    Idea.create(title: "Build Stuff", body: "Buy it at Ikea")
-  }
-
   it "is valid" do
     expect(idea_one).to be_valid
   end
