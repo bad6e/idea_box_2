@@ -19,6 +19,6 @@ function createIdea() {
 function postIdea(ideaParams) {
   $.post('http://localhost:3000/api/v1/ideas.json', ideaParams,
     function(returnedData){
-    getIdeas()
+    renderIdea(returnedData)
   });
 }

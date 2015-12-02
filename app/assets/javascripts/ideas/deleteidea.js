@@ -2,7 +2,6 @@ function deleteIdea(){
   $('.delete-idea').on('click', function(){
     var ideaID = $(this).attr('id')
     var idea   = $(this)
-    debugger
 
     $.ajax({
       type: 'DELETE',
@@ -11,7 +10,6 @@ function deleteIdea(){
         idea.parent().remove()
       },
       error: function(){
-
       }
     });
   });
