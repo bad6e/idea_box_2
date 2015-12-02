@@ -14,9 +14,6 @@ function editIdea() {
           }
         }
 
-        $('#idea-title-edit-' + ideaID).val('')
-        $('#idea-body-edit-' + ideaID).val('')
-
         $.ajax({
           type: 'PUT',
           data: ideaParams,
