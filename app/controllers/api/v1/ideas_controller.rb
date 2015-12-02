@@ -9,6 +9,14 @@ class Api::V1::IdeasController < ApplicationController
     respond_with Idea.create(idea_params), location: nil
   end
 
+  def update
+    @idea = Idea.find(params[:id])
+    @updated_idea = @idea.update(idea_params)
+    respond_to do |format|
+      format.json { render(json: Idea.find(params[:id]), status: 200) }
+    end
+  end
+
   def destroy
     respond_with Idea.destroy(params[:id])
   end
