@@ -1,10 +1,4 @@
 Rails.application.configure do
-  config.middleware.insert_before 0, "Rack::Cors" do
-    allow do
-      origins  '*'
-      resource '*', header: :any, methods: [:get, :post, :delete, :put, :patch, :options]
-    end
-  end
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's
