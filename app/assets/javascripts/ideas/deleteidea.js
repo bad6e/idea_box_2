@@ -5,7 +5,7 @@ function deleteIdea(){
 
     $.ajax({
       type: 'DELETE',
-      url: 'http://localhost:3000/api/v1/ideas/' + ideaID,
+      url: 'https://ideasredux.herokuapp.com/api/v1/ideas/' + ideaID,
       success: function(){
         idea.parent().remove()
       },

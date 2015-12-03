@@ -1,5 +1,5 @@
 function getIdeas(){
-  $.getJSON('http://localhost:3000/api/v1/ideas', function(response){
+  $.getJSON('https://ideasredux.herokuapp.com/api/v1/ideas', function(response){
     parseIdeas(response)
   });
 };
