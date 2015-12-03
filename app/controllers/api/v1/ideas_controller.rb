@@ -1,6 +1,7 @@
 class Api::V1::IdeasController < ApplicationController
   respond_to :json
 
+
   def index
     respond_with Idea.all, location: nil
   end
@@ -10,7 +11,7 @@ class Api::V1::IdeasController < ApplicationController
   end
 
   def update
-    @idea = Idea.find(params[:id])
+    @idea = find_idea(params[:id])
     @updated_idea = @idea.update(idea_params)
     respond_with do |format|
       format.json { render(json: Idea.find(params[:id]), status: 200) }
@@ -25,5 +26,9 @@ class Api::V1::IdeasController < ApplicationController
 
   def idea_params
     params.require(:idea).permit(:title, :body)
+  end
+
+  def find_idea(id)
+    Idea.find(id)
   end
 end

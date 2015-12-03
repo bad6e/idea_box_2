@@ -1,5 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Idea, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:idea_one) {
+    Idea.create(title: "Zipskee", body: "Travel App")
+  }
+
+  it "is valid" do
+    expect(idea_one).to be_valid
+  end
+
+  it "is invalid without a title" do
+    idea_one.title = nil
+    expect(idea_one).to be_invalid
+  end
+
+  it "is invalid without a body" do
+    idea_one.body = nil
+    expect(idea_one).to be_invalid
+  end
+
+  it "is invalid without a quality" do
+    idea_one.quality = nil
+    expect(idea_one).to be_invalid
+  end
 end
