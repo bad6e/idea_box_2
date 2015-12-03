@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User", js: true do
+feature "User Create", js: true do
 
   scenario "user can create ideas" do
     visit root_path

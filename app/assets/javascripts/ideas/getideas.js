@@ -26,9 +26,9 @@ function renderIdea(idea) {
      + idea.id
      + "'><label for='post-body'>Body</label><input class='form-control' type='text' id='idea-body-edit-"
      + idea.id
-     +"'></div><input class='btn btn-default pull-left' id='edit-idea-form-"
+     +"'></div><button class='btn btn-default pull-left' id='edit-idea-form-"
      + idea.id
-     + "'type='button' name='submit' value='Save'></div></div><br>"
+     + "'>Save</button></div></div><br>"
   );
   deleteIdea()
   editIdea()
