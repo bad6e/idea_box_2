@@ -10,7 +10,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
-  Capybara.server_port = 3000
+  Capybara.server_port = 2000
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
