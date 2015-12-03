@@ -17,7 +17,7 @@ function renderIdea(idea) {
      + idea.title
      + '</h3><h4>( '
      + idea.quality
-     + ' )</h4><p>' + idea.body + '</p>'
+     + ' )</h4><p>' + textCutter(idea.body, 100) + '</p>'
      + "<button class='btn btn-default btn-xs delete-idea' id='" + idea.id + "'>Delete</button><button class='btn btn-default btn-xs edit-idea' id='"
      + idea.id
      + "'>Edit</button></div><div style='display: none;' class='edit-form-"
@@ -33,3 +33,12 @@ function renderIdea(idea) {
   deleteIdea()
   editIdea()
 };
+
+
+function textCutter(text, number) {
+  var short = text.substr(0, number);
+    if (/^\S/.test(text.substr(number)))
+      return short.replace(/\s+\S*$/, "");
+      return short;
+};
+
