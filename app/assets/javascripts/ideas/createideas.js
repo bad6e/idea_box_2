@@ -18,7 +18,7 @@ function createIdea() {
 }
 
 function postIdea(ideaParams) {
-  $.post('https://ideasredux.herokuapp.com/api/v1/ideas', ideaParams,
+  $.post('/api/v1/ideas', ideaParams,
     function(returnedData){
     renderIdea(returnedData)
   });

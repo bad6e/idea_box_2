@@ -36,7 +36,7 @@ function postEditQuality(ideaParams, idea, ideaID){
   $.ajax({
     type: 'PUT',
     data: ideaParams,
-    url: 'https://ideasredux.herokuapp.com/api/v1/ideas/' + ideaID,
+    url: '/api/v1/ideas/' + ideaID,
     success: function(response){
       console.log('pass')
       idea.parent().children('h4').text(response.quality)
