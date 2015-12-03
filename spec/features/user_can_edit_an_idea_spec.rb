@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "User Edit", js: true do
 
-  scenario "user can create ideas" do
+  scenario "user can edit ideas" do
     idea_one   = Idea.create(title: 'A', body: 'B')
     idea_two   = Idea.create(title: 'C', body: 'D')
     idea_three = Idea.create(title: 'E', body: 'F')
