@@ -15,9 +15,13 @@ function renderIdea(idea) {
      '<div class="idea-id-' + idea.id
      +' all-ideas"><h3>'
      + idea.title
-     + '</h3><h4>( '
+     + '</h3><h4>'
      + idea.quality
-     + ' )</h4><p>' + textCutter(idea.body, 100) + '</p>'
+     + '</h4><button class="btn btn-default btn-xs idea-quality-up" id="'
+     + idea.id
+     +'">Thumbs Up</button><button class="btn btn-default btn-xs idea-quality-down" id="'
+     + idea.id
+     + '">Thumbs Down</button><br><p>' + textCutter(idea.body, 100) + '</p>'
      + "<button class='btn btn-default btn-xs delete-idea' id='" + idea.id + "'>Delete</button><button class='btn btn-default btn-xs edit-idea' id='"
      + idea.id
      + "'>Edit</button></div><div style='display: none;' class='edit-form-"
@@ -28,10 +32,13 @@ function renderIdea(idea) {
      + idea.id
      +"'></div><button class='btn btn-default pull-left' id='edit-idea-form-"
      + idea.id
-     + "'>Save</button></div></div><br>"
+     + "'>Save</button>"
+
   );
   deleteIdea()
   editIdea()
+  updateIdeaQualityUp()
+  updateIdeaQualityDown()
 };
 
 

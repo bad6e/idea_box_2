@@ -50,7 +50,7 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
   describe "PUT /api/v1/ideas/:id" do
 
-    it "creates an idea on the idea list" do
+    it "updates an idea on the idea list" do
       put :update, format: :json, id: @idea_one.id, idea: { title: "Hi", body: "Mom" }
       assert_response :success
 
