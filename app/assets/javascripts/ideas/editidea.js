@@ -13,22 +13,22 @@ function editIdea() {
             body: ideaBody
           }
         }
-
-        $.ajax({
-          type: 'PUT',
-          data: ideaParams,
-          url: 'http://localhost:3000/api/v1/ideas/' + ideaID,
-          success: function(response){
-            idea.parent().children('h3').text(response.title)
-            idea.parent().children('p').text(response.body)
-          },
-          error: function(){
-            debugger
-        }
+        postEditIdea(ideaParams, idea, ideaID)
       })
-    })
   })
 }
 
-
-
+function postEditIdea(ideaParams, idea, ideaID){
+  $.ajax({
+    type: 'PUT',
+    data: ideaParams,
+    url: 'http://localhost:3000/api/v1/ideas/' + ideaID,
+    success: function(response){
+      idea.parent().children('h3').text(response.title)
+      idea.parent().children('p').text(response.body)
+    },
+    error: function(){
+      debugger
+    }
+  })
+}
