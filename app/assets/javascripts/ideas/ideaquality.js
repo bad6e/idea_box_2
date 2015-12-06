@@ -2,7 +2,6 @@ function updateIdeaQualityUp() {
   $('.idea-quality-up').on('click', function(){
     var ideaID = $(this).attr('id');
     var idea   = $(this);
-    qualityDeterminerUp(idea)
 
     var ideaQuality  = qualityDeterminerUp(idea)
     var ideaParams = {
@@ -19,7 +18,6 @@ function updateIdeaQualityDown() {
   $('.idea-quality-down').on('click', function(){
     var ideaID = $(this).attr('id');
     var idea   = $(this);
-    qualityDeterminerDown(idea)
 
     var ideaQuality  = qualityDeterminerDown(idea)
     var ideaParams = {
@@ -38,7 +36,7 @@ function postEditQuality(ideaParams, idea, ideaID){
     data: ideaParams,
     url: '/api/v1/ideas/' + ideaID,
     success: function(response){
-      console.log('pass')
+      debugger
       idea.parent().children('h4').text(response.quality)
     },
     error: function(){
