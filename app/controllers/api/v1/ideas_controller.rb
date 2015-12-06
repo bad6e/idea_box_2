@@ -23,7 +23,7 @@ class Api::V1::IdeasController < ApplicationController
     idea = Idea.find(params[:id])
     if idea.update(idea_params)
       respond_with do |format|
-        format.json { render(json: Idea.find(params[:id]), status: 200) }
+        format.json { render(json: Idea.find(params[:id]), status: 201) }
       end
     else
       render json: idea.errors, status: 422
