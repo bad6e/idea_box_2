@@ -82,6 +82,14 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
       expect(idea_title).to eq("Hi")
     end
 
+    it "updates the quality of an idea on the list" do
+      put :update, format: :json, id: @idea_one.id, idea: {quality: 'genius'}
+      assert_response :success
+
+      idea_title = Idea.find(@idea_one.id).quality
+      expect(idea_title).to eq("genius")
+    end
+
     it "rejects an idea on the idea list with no title" do
       put :update, format: :json, id: @idea_one.id, idea: { title: "", body: "Mom" }
       assert_response 422
