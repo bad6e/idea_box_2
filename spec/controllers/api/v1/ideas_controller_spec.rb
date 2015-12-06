@@ -62,6 +62,14 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
       expect(response_data['errors']['title']).to eq(["can't be blank"])
       expect(Idea.count).to eq(4)
     end
+
+    it "rejects an idea on the idea list with no body" do
+      post :create, idea: { title: "E", body: "" }, format: :json
+      assert_response 422
+
+      expect(response_data['errors']['body']).to eq(["can't be blank"])
+      expect(Idea.count).to eq(4)
+    end
   end
 
   describe "PUT /api/v1/ideas/:id" do
@@ -79,6 +87,13 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
       assert_response 422
 
       expect(response_data['title']).to eq(["can't be blank"])
+    end
+
+    it "rejects an idea on the idea list with no body" do
+      put :update, format: :json, id: @idea_one.id, idea: { title: "Hi", body: "" }
+      assert_response 422
+
+      expect(response_data['body']).to eq(["can't be blank"])
     end
   end
 end
