@@ -15,10 +15,11 @@ class Api::V1::IdeasController < ApplicationController
   end
 
   def update
-    @idea = find_idea(params[:id])
-    @updated_idea = @idea.update(idea_params)
-    respond_with do |format|
-      format.json { render(json: Idea.find(params[:id]), status: 200) }
+    idea = Idea.find(params[:id])
+    if idea.update(idea_params)
+      respond_with(idea, status: 200, location: api_v1_idea_path(idea))
+    else
+      render json: idea.errors, status: 422
     end
   end
 
@@ -30,9 +31,5 @@ class Api::V1::IdeasController < ApplicationController
 
   def idea_params
     params.require(:idea).permit(:title, :body, :quality)
-  end
-
-  def find_idea(id)
-    Idea.find(id)
   end
 end
