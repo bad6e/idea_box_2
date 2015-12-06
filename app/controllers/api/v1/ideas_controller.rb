@@ -11,7 +11,12 @@ class Api::V1::IdeasController < ApplicationController
   end
 
   def create
-    respond_with Idea.create(idea_params), location: nil
+    idea = Idea.new(idea_params)
+    if idea.save
+      respond_with(idea, status: 201, location: api_v1_idea_path(idea))
+    else
+      render json: {errors: idea.errors}, status: 422, location: api_v1_ideas_path
+    end
   end
 
   def update
