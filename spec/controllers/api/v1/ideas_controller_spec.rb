@@ -50,10 +50,20 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
     it "creates an idea on the idea list" do
       post :create, idea: { title: "E", body: "E1" }, format: :json
-      assert_response :success
+      assert_response 201
 
       expect(Idea.count).to eq(5)
     end
+
+    it "rejects an idea on the idea list with no title" do
+      post :create, idea: { title: "", body: "E1" }, format: :json
+      assert_response 422
+
+      expect(response_data['errors']['title']).to eq(["can't be blank"])
+      expect(Idea.count).to eq(4)
+    end
+
+
   end
 
   describe "PUT /api/v1/ideas/:id" do
