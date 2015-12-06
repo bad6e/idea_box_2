@@ -6,6 +6,10 @@ class Api::V1::IdeasController < ApplicationController
     respond_with Idea.all, location: nil
   end
 
+  def show
+    respond_with Idea.find(params[:id])
+  end
+
   def create
     respond_with Idea.create(idea_params), location: nil
   end

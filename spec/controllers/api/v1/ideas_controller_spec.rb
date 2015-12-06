@@ -17,7 +17,7 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
   describe "GET /api/v1/ideas/" do
 
-    it "gets an individual idea on the idea list" do
+    it "gets an idea on the idea list" do
       get :index ,format: :json
       expect(response_data.first['title']).to eq(@idea_one.title)
     end
@@ -25,6 +25,14 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
     it "gets all the ideas on the ideas list" do
       get :index ,format: :json
       expect(response_data.count).to eq(4)
+    end
+  end
+
+  describe "SHOW /api/v1/ideas/:id" do
+
+    it "gets an one idea on the idea list" do
+      get :show , id: @idea_four.id, format: :json
+      expect(response_data['title']).to eq(@idea_four.title)
     end
   end
 
