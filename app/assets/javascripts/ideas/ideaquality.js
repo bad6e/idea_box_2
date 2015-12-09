@@ -36,7 +36,6 @@ function postEditQuality(ideaParams, idea, ideaID){
     data: ideaParams,
     url: '/api/v1/ideas/' + ideaID,
     success: function(response){
-      debugger
       idea.parent().children('h4').text(response.quality)
     },
     error: function(){
