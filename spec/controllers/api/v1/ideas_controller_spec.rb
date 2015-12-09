@@ -17,7 +17,7 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
   describe "GET /api/v1/ideas/" do
 
-    it "gets an individual idea on the idea list" do
+    it "gets an idea on the idea list" do
       get :index ,format: :json
       expect(response_data.first['title']).to eq(@idea_one.title)
     end
@@ -25,6 +25,14 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
     it "gets all the ideas on the ideas list" do
       get :index ,format: :json
       expect(response_data.count).to eq(4)
+    end
+  end
+
+  describe "SHOW /api/v1/ideas/:id" do
+
+    it "gets an one idea on the idea list" do
+      get :show , id: @idea_four.id, format: :json
+      expect(response_data['title']).to eq(@idea_four.title)
     end
   end
 
@@ -42,9 +50,25 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
     it "creates an idea on the idea list" do
       post :create, idea: { title: "E", body: "E1" }, format: :json
-      assert_response :success
+      assert_response 201
 
       expect(Idea.count).to eq(5)
+    end
+
+    it "rejects an idea on the idea list with no title" do
+      post :create, idea: { title: "", body: "E1" }, format: :json
+      assert_response 422
+
+      expect(response_data['errors']['title']).to eq(["can't be blank"])
+      expect(Idea.count).to eq(4)
+    end
+
+    it "rejects an idea on the idea list with no body" do
+      post :create, idea: { title: "E", body: "" }, format: :json
+      assert_response 422
+
+      expect(response_data['errors']['body']).to eq(["can't be blank"])
+      expect(Idea.count).to eq(4)
     end
   end
 
@@ -56,6 +80,34 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
       idea_title = Idea.find(@idea_one.id).title
       expect(idea_title).to eq("Hi")
+    end
+
+    it "updates the quality of an idea on the list" do
+      put :update, format: :json, id: @idea_one.id, idea: {quality: 'genius'}
+      assert_response :success
+
+      idea_title = Idea.find(@idea_one.id).quality
+      expect(idea_title).to eq("genius")
+    end
+
+    it "rejects the quality of an idea if it is not on the list" do
+      put :update, format: :json, id: @idea_one.id, idea: {quality: 'INVALID'}
+      assert_response 422
+      expect(response_data['quality']).to eq(["INVALID is a not a valid quality!"])
+    end
+
+    it "rejects an idea on the idea list with no title" do
+      put :update, format: :json, id: @idea_one.id, idea: { title: "", body: "Mom" }
+      assert_response 422
+
+      expect(response_data['title']).to eq(["can't be blank"])
+    end
+
+    it "rejects an idea on the idea list with no body" do
+      put :update, format: :json, id: @idea_one.id, idea: { title: "Hi", body: "" }
+      assert_response 422
+
+      expect(response_data['body']).to eq(["can't be blank"])
     end
   end
 end

@@ -6,15 +6,27 @@ class Api::V1::IdeasController < ApplicationController
     respond_with Idea.all, location: nil
   end
 
+  def show
+    respond_with Idea.find(params[:id])
+  end
+
   def create
-    respond_with Idea.create(idea_params), location: nil
+    idea = Idea.new(idea_params)
+    if idea.save
+      respond_with(idea, status: 201, location: api_v1_idea_path(idea))
+    else
+      render json: {errors: idea.errors}, status: 422, location: api_v1_ideas_path
+    end
   end
 
   def update
-    @idea = find_idea(params[:id])
-    @updated_idea = @idea.update(idea_params)
-    respond_with do |format|
-      format.json { render(json: Idea.find(params[:id]), status: 200) }
+    idea = Idea.find(params[:id])
+    if idea.update(idea_params)
+      respond_with do |format|
+        format.json { render(json: Idea.find(params[:id]), status: 201) }
+      end
+    else
+      render json: idea.errors, status: 422
     end
   end
 
@@ -26,9 +38,5 @@ class Api::V1::IdeasController < ApplicationController
 
   def idea_params
     params.require(:idea).permit(:title, :body, :quality)
-  end
-
-  def find_idea(id)
-    Idea.find(id)
   end
 end
